@@ -19,6 +19,12 @@ Vue.use(BootstrapVue)
 
 Vue.config.productionTip = false
 
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title || 'Blog'
+  window.scrollTo(0, 0)
+  next()
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
