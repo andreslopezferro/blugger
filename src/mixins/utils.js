@@ -33,6 +33,12 @@ export const utils = {
       var l = document.createElement('a')
       l.href = post.id + '/' + _.last(post.url.split('/')).replace(/.html/, '')
       return l.pathname
+    },
+    randomPosts: function (qty) {
+      if (!this.posts) {
+        this.getPosts()
+      }
+      return _.sampleSize(this.posts, qty)
     }
   }
 }

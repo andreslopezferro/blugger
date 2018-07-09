@@ -52,6 +52,11 @@ code {
 }
 .article {
   .post {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2em;
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    }
     a {
       color: #343a40 !important;
       text-decoration: underline;
@@ -74,6 +79,9 @@ code {
       border-top: 1px solid #ccc;
       list-style: decimal-leading-zero;
       padding-left: 28px;
+      a {
+        text-decoration: none;
+      }
     }
   }
   &__writers {

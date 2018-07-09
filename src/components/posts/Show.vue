@@ -1,27 +1,29 @@
 <template>
   <section class="container mt-5 article">
-    <article class="row justify-content-center">
-      <author :author="post.author" :post="post" class="col-sm-12 col-md-9 col-lg-8 text-left"></author>
-      <div class="col-sm-12 col-md-9 col-lg-8 text-left post" v-html="post.content"></div>
-      <div class="col-sm-12 col-md-9 col-lg-8 text-left mt-3">
-        <hr>
-        <h6 class=" text-body">¿Te gustó lo que acabas de leer?</h6>
-        <p class="text-secondary">Comparte esta publicación para que alguien más disfrute también.</p>
-      </div>
-      <author :author="post.author" class="col-sm-12 col-md-9 col-lg-8 text-left border-top pt-3"></author>
-    </article>
+    <template v-if="post">
+      <article class="row justify-content-center">
+        <author :author="post.author" :post="post" class="col-sm-12 col-md-9 col-lg-8 text-left"></author>
+        <div class="col-sm-12 col-md-9 col-lg-8 text-left post mb-4" v-html="post.content"></div>
+        <author :author="post.author" class="col-sm-12 col-md-9 col-lg-8 text-left border-top pt-3"></author>
+      </article>
+    </template>
+    <template v-else>
+      <h6 class="h1 text-black-50">404</h6>
+      <h6 class="display-4">Uuups.</h6>
+      <p class="lead">No hemos encontrado el articulo que buscas...</p>
+      <router-link to="/" class="d-inline-block text-body mb-5">Volver al inicio</router-link>
+    </template>
   </section>
 </template>
 
 <script>
 import Author from '../authors/Show'
-import {utils} from '../../mixins/utils'
-import { mapGetters, mapActions, mapMutations } from 'vuex'
+import PopularPosts from './Popular'
+import { mapGetters, mapActions } from 'vuex'
 export default {
-  components: {Author},
+  components: {Author, PopularPosts},
   name: 'PostShow',
   props: ['id', 'slug'],
-  mixins: [utils],
   computed: {
     ...mapGetters('postsModule', {
       post: 'currentPost'
@@ -33,9 +35,6 @@ export default {
   methods: {
     ...mapActions('postsModule', [
       'getPost'
-    ]),
-    ...mapMutations('postsModule', [
-      'setCover'
     ])
   }
 }
