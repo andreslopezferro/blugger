@@ -1,7 +1,82 @@
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display');
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+header {
+  padding: 0.5rem 1rem;
+  .h2 {
+    font-family: 'Playfair Display', serif;
+    a {
+      text-decoration: none;
+    }
+  }
+}
+footer {
+  a {
+    text-decoration: none !important;
+  }
+}
+code {
+  background-color: #f1f1f1;
+  color: #2c3e50;
+  padding: 2px 5px;
+}
+.posts {
+  .post {
+    &__body {
+      a {
+        text-decoration: none;
+      }
+      p {
+        font-size: .9em;
+      }
+    }
+    &__image {
+      &--loader {
+        background: url('../images/loader.gif') center center no-repeat;
+        background-size: 80px;
+      }
+      div {
+        background-repeat: no-repeat;
+        background-position: 50% 50% !important;
+        background-size: cover;
+        height: 100%;
+      }
+    }
+  }
+}
+.article {
+  .post {
+    a {
+      color: #343a40 !important;
+      text-decoration: underline;
+    }
+  }
+}
+.author {
+  h5 {
+    font-size: .9em;
+  }
+}
+.sidebar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 5rem;
+  height: calc(100vh - 4rem);
+  overflow-y: auto;
+  &__spotlight {
+    ul {
+      border-top: 1px solid #ccc;
+      list-style: decimal-leading-zero;
+      padding-left: 28px;
+    }
+  }
+  &__writers {
+    border-top: 1px solid #eee;
+  }
 }
