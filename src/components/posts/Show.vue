@@ -3,7 +3,7 @@
     <template v-if="post">
       <article class="row justify-content-center">
         <author :author="post.author" :post="post" class="col-sm-12 col-md-9 col-lg-8 text-left"></author>
-        <div class="col-sm-12 col-md-9 col-lg-8 text-left post mb-4" v-html="post.content"></div>
+        <div class="col-sm-12 col-md-9 col-lg-8 text-body text-left post mb-4" v-html="post.content"></div>
         <author :author="post.author" class="col-sm-12 col-md-9 col-lg-8 text-left border-top pt-3"></author>
       </article>
     </template>
