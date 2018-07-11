@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <navbar></navbar>
+    <navbar :blog="blog"></navbar>
     <router-view/>
-    <footer-blog></footer-blog>
+    <footer-blog :blog="blog"></footer-blog>
     <cookies :class="{'active': !cookiesStatus}"></cookies>
   </div>
 </template>
@@ -17,8 +17,12 @@ export default {
   name: 'App',
   computed: {
     ...mapGetters('blogModule', {
-      cookiesStatus: 'cookiesStatus'
+      cookiesStatus: 'cookiesStatus',
+      blog: 'currentBlog'
     })
+  },
+  beforeMount: function () {
+    this.getBlog()
   },
   mounted: function () {
     var vm = this
@@ -28,6 +32,7 @@ export default {
   },
   methods: {
     ...mapActions('blogModule', [
+      'getBlog',
       'validateCookiesStatus'
     ])
   }

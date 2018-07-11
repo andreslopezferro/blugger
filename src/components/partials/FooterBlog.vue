@@ -5,21 +5,10 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'Footer',
-  computed: {
-    ...mapGetters('blogModule', {
-      blog: 'currentBlog'
-    })
-  },
-  created: function () {
-    this.getBlog()
-  },
+  props: ['blog'],
   methods: {
-    ...mapActions('blogModule', [
-      'getBlog'
-    ]),
     getYear: function () {
       return new Date().getFullYear()
     }

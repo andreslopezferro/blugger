@@ -8,21 +8,8 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'Header',
-  computed: {
-    ...mapGetters('blogModule', {
-      blog: 'currentBlog'
-    })
-  },
-  created: function () {
-    this.getBlog()
-  },
-  methods: {
-    ...mapActions('blogModule', [
-      'getBlog'
-    ])
-  }
+  props: ['blog']
 }
 </script>
