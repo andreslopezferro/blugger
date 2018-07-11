@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
+import VueCookie from 'vue-cookie'
 import BootstrapVue from 'bootstrap-vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
@@ -16,6 +17,7 @@ import './assets/stylesheets/main.scss'
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.use(BootstrapVue)
+Vue.use(VueCookie)
 
 Vue.config.productionTip = false
 

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Playfair+Display');
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display|Noto+Serif');
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -26,6 +26,49 @@ code {
   color: #2c3e50;
   padding: 2px 5px;
 }
+.cookie-bar {
+  background-color: rgba(black, .8);
+  border-radius: 3px;
+  bottom: 0;
+  font-size: .9em;
+  left: 50%;
+  margin-bottom: 20px;
+  opacity: 0;
+  padding: 15px 90px 15px 30px;
+  position: fixed;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-transform: translate(-50%, 100%);
+  -ms-transform: translate(-50%, 100%);
+  transform: translate(-50%, 100%);
+  transition: all 150ms ease-in-out;
+  width: 90%;
+  max-width: 300px;
+  z-index: 2000;
+  a {
+    text-decoration: underline;
+  }
+  &.active {
+    visibility: inherit;
+    opacity: 1;
+    transform: matrix(1, 0, 0, 1, -150, 0);
+  }
+  &--close-button {
+    background-color: transparent;
+    border-style: solid;
+    border-width: 0 0 0 1px;
+    border-color: #444;
+    cursor: pointer;
+    display: inline-block;
+    height: 100%;
+    margin: 0;
+    vertical-align: middle;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 68px;
+  }
+}
 .posts {
   .post {
     &__body {
@@ -52,13 +95,13 @@ code {
 }
 .article {
   .post {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Noto Serif', serif;
     font-size: 1.2em;
     h1, h2, h3, h4, h5, h6 {
       font-family: 'Avenir', Helvetica, Arial, sans-serif;
     }
     a {
-      color: #343a40 !important;
+      color: #212529 !important;
       text-decoration: underline;
     }
   }
