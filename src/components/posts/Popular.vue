@@ -17,7 +17,7 @@
         <p class="text-muted" v-else>No hay publicaciones aún...</p>
       </article>
       <aside class="col-sm-12 text-left py-2 my-3 sidebar__writers">
-        <router-link to="/authors" class="text-muted"><small>Escritores</small></router-link> · <router-link to="/cookies" class="text-muted"><small>Cookies</small></router-link>
+        <router-link to="/cookies" class="text-muted"><small>Cookies</small></router-link>
       </aside>
     </div>
   </section>

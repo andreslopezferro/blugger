@@ -19,7 +19,7 @@
 <script>
 import Author from '../authors/Show'
 import PopularPosts from './Popular'
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 export default {
   components: {Author, PopularPosts},
   name: 'PostShow',
@@ -32,9 +32,15 @@ export default {
   created: function () {
     this.getPost({id: this.id})
   },
+  beforeDestroy: function () {
+    this.setPost({})
+  },
   methods: {
     ...mapActions('postsModule', [
       'getPost'
+    ]),
+    ...mapMutations('postsModule', [
+      'setPost'
     ])
   }
 }
