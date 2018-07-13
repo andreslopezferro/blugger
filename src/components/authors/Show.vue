@@ -1,7 +1,7 @@
 <template>
   <section class="author">
     <article class="clearfix mb-4" v-if="author">
-      <a :href="author.url" target="_blank"><img :src="author.image.url" alt="Author" class="rounded-circle d-inline-block float-left mr-3"></a>
+      <a :href="author.url" target="_blank"><img :src="author.image.url" class="rounded-circle d-inline-block float-left mr-3"></a>
       <h5 class="mb-0"><a :href="author.url" class="text-body" target="_blank">{{author.displayName}}</a></h5>
       <div v-if="post">
         <small class="text-black-50">{{parseDate(post.published).month}} {{parseDate(post.published).day}}, {{parseDate(post.published).year}} · {{readingTime(post.content).text}}</small>
