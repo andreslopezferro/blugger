@@ -14,7 +14,7 @@ export default {
           resolve(response)
         })
         .catch(function (error) {
-          reject(error)
+          resolve(error)
         })
     })
   },
@@ -25,7 +25,7 @@ export default {
           resolve(response)
         })
         .catch(function (error) {
-          reject(error)
+          resolve(error)
         })
     })
   }

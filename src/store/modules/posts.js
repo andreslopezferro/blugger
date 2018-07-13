@@ -7,7 +7,8 @@ const state = function () {
   return {
     posts: [],
     currentPost: {},
-    months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+    months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+    loading: true
   }
 }
 
@@ -21,6 +22,9 @@ const getters = {
   },
   months: function (state) {
     return state.months
+  },
+  loadingStatus: function (state) {
+    return state.loading
   }
 }
 
@@ -34,21 +38,28 @@ const mutations = {
   },
   setCover: function (state, payload) {
     state.posts[payload.index].imageUrl = payload.url ? payload.url[1] : ''
+  },
+  setLoading: function (state, status) {
+    state.loading = status
   }
 }
 
 // actions
 const actions = {
   getPosts: function (context) {
+    context.commit('setLoading', true)
     posts.getPosts().then(function (response) {
       context.commit('setPosts', response.data.items)
+      context.commit('setLoading', false)
     }, function (error) {
       console.log(error)
     })
   },
   getPost: function (context, payload) {
+    context.commit('setLoading', true)
     posts.getPost(payload.id).then(function (response) {
       context.commit('setPost', response.data)
+      context.commit('setLoading', false)
     }, function (error) {
       console.log(error)
     })
