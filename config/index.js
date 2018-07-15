@@ -42,9 +42,8 @@ module.exports = {
 
     cssSourceMap: true,
     // Blogger data.
-    blogId: '',
-    blogUrl: 'blog.com/',
-    apiKey: '',
+    blogId: 'YOURBLOGID',
+    apiKey: 'YOURAPIKEY',
     bloggerApiUrl: 'https://www.googleapis.com/blogger/v3/blogs/'
   },
 
@@ -79,9 +78,8 @@ module.exports = {
     // Set to `true` or `false` to always turn it on or off
     bundleAnalyzerReport: process.env.npm_config_report,
     // Blogger data.
-    blogId: '',
-    blogUrl: 'blog.com',
-    apiKey: '',
+    blogId: 'YOURBLOGID',
+    apiKey: 'YOURAPIKEY',
     bloggerApiUrl: 'https://www.googleapis.com/blogger/v3/blogs/'
   }
 }
