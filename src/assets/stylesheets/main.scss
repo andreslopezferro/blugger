@@ -98,6 +98,12 @@ img {
   }
 }
 .article {
+  .go-back {
+    font-size: .9em;
+    a {
+      text-decoration: none;
+    }
+  }
   .post {
     font-family: 'Noto Serif', serif;
     font-size: 1.2em;

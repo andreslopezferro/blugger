@@ -7,7 +7,7 @@
           <rect x="80" y="13" rx="4" ry="4" width="150" height="15" />
           <rect x="80" y="37" rx="4" ry="4" width="90" height="10" />
         </vue-content-loading>
-        <vue-content-loading height="230">
+        <vue-content-loading :height="230">
           <rect x="0" y="0" rx="2" ry="2" width="80%" height="5" />
           <rect x="0" y="12" rx="2" ry="2" width="90%" height="5" />
           <rect x="0" y="24" rx="2" ry="2" width="70%" height="5" />
@@ -16,8 +16,14 @@
       </div>
       <template v-else>
         <template v-if="post && post != {}">
+          <div class="go-back mb-4 col-sm-12 col-md-9 col-lg-8 text-left">
+            <router-link to="/" class="text-muted"><font-awesome-icon icon="chevron-left" /> Volver al índice</router-link>
+          </div>
           <author :author="post.author" :post="post" class="col-sm-12 col-md-9 col-lg-8 text-left"></author>
-          <div class="col-sm-12 col-md-9 col-lg-8 text-body post mb-4 text-left" v-html="post.content"></div>
+          <div class="col-sm-12 col-md-9 col-lg-8 text-body post mb-4 text-left">
+            <h1 class="h2 main mb-3">{{post.title}}</h1>
+            <div v-html="post.content"></div>
+          </div>
           <author :author="post.author" class="col-sm-12 col-md-9 col-lg-8 border-top pt-3 text-left"></author>
         </template>
         <template v-else>
