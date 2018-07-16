@@ -17,7 +17,7 @@
             <h2 class="lead font-weight-bold"><router-link :to="'/posts' + generateSlug(post)" class="text-dark">{{post.title}}</router-link></h2>
             <router-link :to="'/posts' + generateSlug(post)"><p class="text-muted" v-html="truncatePost(post.content, 140, /,? +/)"></p></router-link>
             <div class="tags mb-1">
-              <span class="badge badge-light font-weight-light mr-2 text-capitalize" v-for="label in post.labels">{{label}}</span>
+              <span class="badge badge-light font-weight-light mr-2 text-capitalize" v-for="(label, index) in post.labels" :key="index">{{label}}</span>
             </div>
             <small class="d-block mb-0"><router-link :to="'/posts' + generateSlug(post)" class="text-dark">{{post.author.displayName}}</router-link></small>
             <small><router-link :to="'/posts' + generateSlug(post)" class="text-muted">{{parseDate(post.published).month}} {{parseDate(post.published).day}}, {{parseDate(post.published).year}} · {{readingTime(post.content).text}}</router-link></small>
