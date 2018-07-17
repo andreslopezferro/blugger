@@ -15,9 +15,10 @@ export const utils = {
         'separator': separator
       })
     },
-    findImage: function (post, index) {
+    findImage: function (post) {
       // eslint-disable-next-line
       var url = /<img\s[^>]*?src\s*=\s*['\"]([^'\"]*?)['\"][^>]*?>/.exec(post.content)
+      var index = _.findIndex(this.posts, {'id': post.id})
       this.setCover({index: index, url: url})
       return url
     },

@@ -11,8 +11,13 @@
       </vue-content-loading>
     </div>
     <div v-else>
+      <div class="row mb-3">
+        <fieldset class="col-sm-12">
+          <input type="text" class="form-control rounded-0" name="search" v-model="search" placeholder="Buscar...">
+        </fieldset>
+      </div>
       <template v-if="posts && posts.length > 0">
-        <article class="row text-left post mb-5" v-for="(post, index) in posts" :key="post.id" :id="post.id">
+        <article class="row text-left post mb-5" v-for="post in filteredList" :key="post.id" :id="post.id">
           <div class="col-sm-12 col-md-8 post__body">
             <h2 class="lead font-weight-bold"><router-link :to="'/posts' + generateSlug(post)" class="text-dark">{{post.title}}</router-link></h2>
             <router-link :to="'/posts' + generateSlug(post)"><p class="text-muted" v-html="truncatePost(post.content, 140, /,? +/)"></p></router-link>
@@ -22,7 +27,7 @@
             <small class="d-block mb-0"><router-link :to="'/posts' + generateSlug(post)" class="text-dark">{{post.author.displayName}}</router-link></small>
             <small><router-link :to="'/posts' + generateSlug(post)" class="text-muted">{{parseDate(post.published).month}} {{parseDate(post.published).day}}, {{parseDate(post.published).year}} · {{readingTime(post.content).text}}</router-link></small>
           </div>
-          <aside class="col-md-4 post__image d-none d-md-block" :class="{'post__image--loader': findImage(post, index)}">
+          <aside class="col-md-4 post__image d-none d-md-block" :class="{'post__image--loader': findImage(post)}">
             <router-link :to="'/posts' + generateSlug(post)">
               <div class="col-sm-12" v-if="post.imageUrl" :style="{backgroundImage: 'url(' + post.imageUrl + ')', }"></div>
             </router-link>
@@ -31,6 +36,9 @@
       </template>
       <article v-else>
         <p class="text-muted">No hay publicaciones aún...</p>
+      </article>
+      <article v-if="filteredList.length <= 0">
+        <p class="text-muted">No hay resultados.</p>
       </article>
     </div>
   </section>
@@ -44,12 +52,24 @@ export default {
   components: {VueContentLoading},
   name: 'PostIndex',
   mixins: [utils],
+  data: function () {
+    return {
+      search: ''
+    }
+  },
   computed: {
     ...mapGetters('postsModule', {
       posts: 'allPosts',
       months: 'months',
       loading: 'loadingStatus'
-    })
+    }),
+    filteredList: function () {
+      var vm = this
+      var query = vm.search.toLowerCase()
+      return vm.posts.filter(function (post) {
+        return post.title.toLowerCase().includes(query) || post.content.toLowerCase().includes(query) || (post.labels ? post.labels.toString().toLowerCase().includes(query) : null)
+      })
+    }
   },
   created: function () {
     this.getPosts()
