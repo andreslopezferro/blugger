@@ -22,7 +22,10 @@
           <author :author="post.author" :post="post" class="col-sm-12 col-md-9 col-lg-8 text-left"></author>
           <div class="col-sm-12 col-md-9 col-lg-8 text-body post mb-4 text-left">
             <h1 class="h2 main mb-3">{{post.title}}</h1>
-            <div v-html="post.content"></div>
+            <div class="post__body" v-html="post.content"></div>
+            <div class="tags mt-4">
+              <router-link :to="'/?search=' + label" class="badge badge-light font-weight-light mr-2 text-capitalize d-inline-block" v-for="(label, index) in post.labels" :key="index">{{label}}</router-link>
+            </div>
           </div>
           <author :author="post.author" class="col-sm-12 col-md-9 col-lg-8 border-top pt-3 text-left"></author>
         </template>

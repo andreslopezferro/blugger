@@ -40,6 +40,10 @@ export const utils = {
         this.getPosts()
       }
       return _.sampleSize(this.posts, qty)
+    },
+    fastFind: function (query) {
+      window.scrollTo(0, 0)
+      this.search = query
     }
   }
 }
