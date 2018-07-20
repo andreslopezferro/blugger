@@ -31,7 +31,7 @@ const getters = {
 // mutations
 const mutations = {
   setPosts: function (state, posts) {
-    state.posts = posts
+    state.posts = posts || []
   },
   setPost: function (state, post) {
     state.currentPost = post

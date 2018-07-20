@@ -11,18 +11,18 @@
       </vue-content-loading>
     </div>
     <div v-else>
+      <template v-if="posts && posts.length > 0">
       <div class="row mb-3">
         <fieldset class="col-sm-12">
           <input type="text" class="form-control rounded-0" name="search" v-model="search" placeholder="Buscar...">
         </fieldset>
       </div>
-      <template v-if="posts && posts.length > 0">
         <article class="row text-left post mb-5" v-for="post in filteredList" :key="post.id" :id="post.id">
           <div class="col-sm-12 col-md-8 post__body">
             <h2 class="lead font-weight-bold"><router-link :to="'/posts' + generateSlug(post)" class="text-dark">{{post.title}}</router-link></h2>
-            <router-link :to="'/posts' + generateSlug(post)"><p class="text-muted" v-html="truncatePost(post.content, 140, /,? +/)"></p></router-link>
+            <router-link :to="'/posts' + generateSlug(post)"><p class="text-muted mb-0" v-html="truncatePost(post.content, 140, /,? +/)"></p></router-link>
             <div class="tags mb-1">
-              <span class="badge badge-light font-weight-light mr-2 text-capitalize" v-for="(label, index) in post.labels" :key="index" @click="fastFind(label)">{{label}}</span>
+              <span class="badge badge-light font-weight-light mr-1 text-capitalize" v-for="(label, index) in post.labels" :key="index" @click="fastFind(label)" v-if="index < 5">{{label}}</span>
             </div>
             <small class="d-block mb-0"><router-link :to="'/posts' + generateSlug(post)" class="text-dark">{{post.author.displayName}}</router-link></small>
             <small><router-link :to="'/posts' + generateSlug(post)" class="text-muted">{{parseDate(post.published).month}} {{parseDate(post.published).day}}, {{parseDate(post.published).year}} · {{readingTime(post.content).text}}</router-link></small>
@@ -37,7 +37,7 @@
       <article v-else>
         <p class="text-muted">No hay publicaciones aún...</p>
       </article>
-      <article v-if="filteredList.length <= 0">
+      <article v-if="posts.length > 0 && filteredList.length <= 0">
         <p class="text-muted">No hay resultados.</p>
       </article>
     </div>
